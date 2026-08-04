@@ -13,8 +13,8 @@ const options = {
 
     servers: [
       {
-        url: "http://localhost:3000",
-        description: "Development Server",
+        url: "https://stockflow-api-lh01.onrender.com",
+        description: "Production Server",
       },
     ],
 
