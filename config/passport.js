@@ -8,7 +8,9 @@ if (process.env.NODE_ENV !== "test") {
       {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "/auth/github/callback",
+        callbackURL:
+            process.env.GITHUB_CALLBACK_URL ||
+            "http://localhost:3000/auth/github/callback",
       },
       function (accessToken, refreshToken, profile, done) {
         return done(null, profile);
