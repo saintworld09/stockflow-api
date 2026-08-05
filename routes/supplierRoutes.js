@@ -10,6 +10,7 @@ const {
   deleteSupplier,
 } = require("../controllers/supplierController");
 
+const authenticate = require("../middleware/authenticate");
 const validate = require("../middleware/validate");
 const supplierSchema = require("../validation/supplierValidation");
 
@@ -98,7 +99,7 @@ router.get("/:id", getSupplierById);
  *       400:
  *         description: Validation error.
  */
-router.post("/", validate(supplierSchema), createSupplier);
+router.post("/", authenticate,validate(supplierSchema), createSupplier);
 
 /**
  * @swagger
@@ -126,7 +127,7 @@ router.post("/", validate(supplierSchema), createSupplier);
  *       404:
  *         description: Supplier not found.
  */
-router.put("/:id", validate(supplierSchema), updateSupplier);
+router.put("/:id", authenticate,validate(supplierSchema), updateSupplier);
 
 /**
  * @swagger
@@ -148,6 +149,6 @@ router.put("/:id", validate(supplierSchema), updateSupplier);
  *       404:
  *         description: Supplier not found.
  */
-router.delete("/:id", deleteSupplier);
+router.delete("/:id", authenticate,deleteSupplier);
 
 module.exports = router;

@@ -14,12 +14,15 @@ const options = {
     servers: [
       {
         url: "https://stockflow-api-lh01.onrender.com",
-        description: "Production Server",
+        description: "Development Server",
       },
     ],
 
     components: {
       schemas: {
+        // ===========================
+        // PRODUCT
+        // ===========================
         Product: {
           type: "object",
           properties: {
@@ -128,6 +131,9 @@ const options = {
           },
         },
 
+        // ===========================
+        // SUPPLIER
+        // ===========================
         Supplier: {
           type: "object",
           properties: {
@@ -200,6 +206,173 @@ const options = {
             },
           },
         },
+
+        // ===========================
+        // CUSTOMER
+        // ===========================
+        Customer: {
+          type: "object",
+          properties: {
+            _id: {
+              type: "string",
+              example: "6891d8e8c4d5ef1d2f6f4a80",
+            },
+            firstName: {
+              type: "string",
+              example: "John",
+            },
+            lastName: {
+              type: "string",
+              example: "Doe",
+            },
+            email: {
+              type: "string",
+              example: "john.doe@email.com",
+            },
+            phone: {
+              type: "string",
+              example: "+2348012345678",
+            },
+            city: {
+              type: "string",
+              example: "Lagos",
+            },
+            createdAt: {
+              type: "string",
+              format: "date-time",
+              example: "2026-08-05T10:00:00Z",
+            },
+            updatedAt: {
+              type: "string",
+              format: "date-time",
+              example: "2026-08-05T10:00:00Z",
+            },
+          },
+        },
+
+        CustomerInput: {
+          type: "object",
+          required: [
+            "firstName",
+            "lastName",
+            "email",
+            "phone",
+            "city",
+          ],
+          properties: {
+            firstName: {
+              type: "string",
+              example: "John",
+            },
+            lastName: {
+              type: "string",
+              example: "Doe",
+            },
+            email: {
+              type: "string",
+              example: "john.doe@email.com",
+            },
+            phone: {
+              type: "string",
+              example: "+2348012345678",
+            },
+            city: {
+              type: "string",
+              example: "Lagos",
+            },
+          },
+        },
+
+        Order: {
+  type: "object",
+  properties: {
+    _id: {
+      type: "string",
+      example: "6891e8f8c4d5ef1d2f6f4a90",
+    },
+    customerId: {
+      type: "string",
+      example: "6891d8e8c4d5ef1d2f6f4a80",
+    },
+    productId: {
+      type: "string",
+      example: "6889a0c8c4d5ef1d2f6f4a71",
+    },
+    quantity: {
+      type: "integer",
+      example: 2,
+    },
+    totalPrice: {
+      type: "number",
+      example: 1000,
+    },
+    orderStatus: {
+      type: "string",
+      enum: [
+        "Pending",
+        "Processing",
+        "Completed",
+        "Cancelled",
+      ],
+      example: "Pending",
+    },
+    orderDate: {
+      type: "string",
+      format: "date-time",
+      example: "2026-08-05T12:00:00Z",
+    },
+    createdAt: {
+      type: "string",
+      format: "date-time",
+      example: "2026-08-05T12:00:00Z",
+    },
+    updatedAt: {
+      type: "string",
+      format: "date-time",
+      example: "2026-08-05T12:00:00Z",
+    },
+  },
+},
+
+OrderInput: {
+  type: "object",
+  required: [
+    "customerId",
+    "productId",
+    "quantity",
+    "totalPrice",
+  ],
+  properties: {
+    customerId: {
+      type: "string",
+      example: "6891d8e8c4d5ef1d2f6f4a80",
+    },
+    productId: {
+      type: "string",
+      example: "6889a0c8c4d5ef1d2f6f4a71",
+    },
+    quantity: {
+      type: "integer",
+      example: 2,
+    },
+    totalPrice: {
+      type: "number",
+      example: 1000,
+    },
+    orderStatus: {
+      type: "string",
+      enum: [
+        "Pending",
+        "Processing",
+        "Completed",
+        "Cancelled",
+      ],
+      example: "Pending",
+    },
+  },
+},
+
+
       },
     },
   },

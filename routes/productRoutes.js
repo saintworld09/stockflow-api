@@ -10,6 +10,7 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 
+const authenticate = require("../middleware/authenticate");
 const validate = require("../middleware/validate");
 const productSchema = require("../validation/productValidation");
 
@@ -98,7 +99,12 @@ router.get("/:id", getProductById);
  *       400:
  *         description: Validation error.
  */
-router.post("/", validate(productSchema), createProduct);
+router.post(
+  "/",
+  authenticate,
+  validate(productSchema),
+  createProduct
+);
 
 /**
  * @swagger
@@ -126,8 +132,12 @@ router.post("/", validate(productSchema), createProduct);
  *       404:
  *         description: Product not found.
  */
-router.put("/:id", validate(productSchema), updateProduct);
-
+router.put(
+  "/:id",
+  authenticate,
+  validate(productSchema),
+  updateProduct
+);
 /**
  * @swagger
  * /api/products/{id}:
@@ -148,6 +158,6 @@ router.put("/:id", validate(productSchema), updateProduct);
  *       404:
  *         description: Product not found.
  */
-router.delete("/:id", deleteProduct);
+router.delete("/:id", authenticate,deleteProduct);
 
 module.exports = router;
