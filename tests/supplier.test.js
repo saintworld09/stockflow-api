@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const app = require("../app");
 const connectDB = require("../config/db");
 
+// Allow more time for MongoDB connection
+jest.setTimeout(30000);
+
 beforeAll(async () => {
   await connectDB();
 });
